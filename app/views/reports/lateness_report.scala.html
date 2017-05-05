@@ -1,0 +1,43 @@
+@(modelMap : Map[String, Object])
+@import util.Utility
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+@latenessReport = @{modelMap.get("latenessReport").asInstanceOf[List[Attendance]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Lateness Report") {
+    @inc.report_tabs(selectedTab)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pin</th>
+                <th>Date</th>
+                <th>Clock In</th>
+                <th>Expected Clock In</th>
+                <th>Hours Worked</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+            @for(report <- latenessReport) {
+                <tr>
+                    <td>@(report.user.firstName + " "+ report.user.lastName)</td>
+                    <td>@report.user.userId.pin</td>
+                    <td>@report.clockDate</td>
+                    <td>@{Utility.printTime(report.clockIn)}</td>
+                    <td>@{Utility.printTime(report.shift.expectedClockIn)}</td>
+                    <td>@{Utility.printTime(report.clockOut.minusHours(report.clockIn.getHour))}</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

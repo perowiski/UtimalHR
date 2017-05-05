@@ -1,0 +1,97 @@
+@(modelMap : Map[String, Object])
+@account = @{modelMap.get("account").asInstanceOf[Account]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Company Profile") {
+    <div class="col-lg-12">
+        <section class="box nobox ">
+            <div class="content-body">
+                <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="uprofile-image">
+                        <img alt="" src="@routes.Assets.versioned("../../../public/data/profile/profile.jpg")" class="img-responsive">
+                    </div>
+                    <div class="uprofile-name">
+                        <h3>
+                            <a href="#">@account.companyName</a>
+                                <!-- Available statuses: online, idle, busy, away and offline -->
+                            <span class="uprofile-status online"></span>
+                        </h3>
+                        <p class="uprofile-title">@account.website</p>
+                    </div>
+                    <div class="uprofile-info">
+                        <ul class="list-unstyled">
+                            <li><i class='fa fa-user'></i>@account.contactName</li>
+                            <li><i class='fa fa-envelope-square'></i>@account.emailAdress</li>
+                            <li><i class='fa fa-phone-square'></i>@account.phone</li>
+                        </ul>
+                    </div>
+                    <div class="address-details">
+                        <h4>Address Details</h4>
+                        <p>@{account.address.address+", "+ account.address.state+ ", "+account.address.country} </p>
+                    </div>
+                    <div class="modify-settings">
+                        <a href="#" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i>Modify Settings</a>
+                    </div>
+
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12">
+
+                    <div class="">
+                        <div class="enter_post col-xs-12">
+
+                            <h4>Add your organization's detail. Super Administrator, personalise using your company logo and create other company related settings.</h4>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>Super Administrator</h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    Email ID @account.emailAdress
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading panel-primary">
+                                    <h4>Local Settings</h4>
+                                </div>
+                                <div class="panel-body">
+                                    Current Locale @account.address.country<br/>
+                                    Time Zone @account.emailAdress
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>Display Settings</h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    Name to be displayed @account.address.country<br/>
+                                    Date Format @account.address.country<br/>
+                                    Time Format @account.emailAdress
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </section>
+    </div>
+
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

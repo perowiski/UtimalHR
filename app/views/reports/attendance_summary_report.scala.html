@@ -1,0 +1,55 @@
+@(modelMap : Map[String, Object])
+@import pojos.AttendanceSummaryReport
+@import util.Utility
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+@attendanceSummaryReport = @{modelMap.get("attendanceSummaryReport").asInstanceOf[AttendanceSummaryReport]}
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Attendance Summary Report") {
+    @inc.report_tabs(selectedTab)
+    <table class="table table-bordered table-responsive table-small-font">
+        <thead class="uilabels text-sm">
+            <tr>
+                <th>Name</th>
+                <th>Pin</th>
+                <th>No Of Times Present</th>
+                <th>No Of Times Punctual</th>
+                <th>No Of Lateness</th>
+                <th>No Of Times Absent</th>
+                <th>No Clock In</th>
+                <th>No Clock Out</th>
+                <th>Expected Hours Of Work</th>
+                <th>Total Hours Of Work</th>
+                <th>Clock In</th>
+                <th>Clock Out</th>
+                <th>No Of Early Clock Out</th>
+            </tr>
+
+        </thead>
+
+        <tbody class="uilabels text-sm">
+            <tr>
+                <td>@attendanceSummaryReport.firstName</td>
+                <td>@attendanceSummaryReport.pin</td>
+                <td>@attendanceSummaryReport.numberOfTimesPresent</td>
+                <td>@attendanceSummaryReport.numberOfTimesPunctual</td>
+                <td>@attendanceSummaryReport.numberOfLateness</td>
+                <td>@attendanceSummaryReport.numberOfTimesAbsent</td>
+                <td>@attendanceSummaryReport.noClockIn</td>
+                <td>@attendanceSummaryReport.noClockOut</td>
+                <td>@Utility.splitToTimeFormat(attendanceSummaryReport.expectedHoursOfWork)</td>
+                <td>@Utility.splitToTimeFormat(attendanceSummaryReport.totalHoursOfWork)</td>
+                <td>@attendanceSummaryReport.clockIn</td>
+                <td>@attendanceSummaryReport.clockOut</td>
+                <td>@attendanceSummaryReport.numberOfEarlyClockOut</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

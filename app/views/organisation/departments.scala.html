@@ -1,0 +1,49 @@
+@(modelMap : Map[String, Object])
+
+@departmentList = @{modelMap.get("departmentList").asInstanceOf[List[Array[Object]]]}
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Departments") {
+
+    <table id="example-1" class="table table-striped dt-responsive display">
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Number of employees</th>
+                <th>Parent department</th>
+                <th>Department head</th>
+                <th>Department mail alias</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+
+        @for(department <- departmentList) {
+            <tr>
+                <td>@{department(0).asInstanceOf[Department].departmentName}</td>
+                <td>@if(department(1) != null){@department(1)}else{0} </td>
+                <td>
+                    @if(department(0).asInstanceOf[Department] != null){
+                        @{department(0).asInstanceOf[Department].departmentName}
+                    }
+                </td>
+                <td>
+                @if(department(0).asInstanceOf[Department].departmentHeadId != null){
+                    @{department(0).asInstanceOf[Department].departmentHeadId.firstName + " " +department(0).asInstanceOf[Department].departmentHeadId.firstName}
+                }
+                </td>
+
+                <td>@{department(0).asInstanceOf[Department].departmentMailAlias}</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

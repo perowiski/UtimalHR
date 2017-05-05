@@ -1,0 +1,29 @@
+@(modelMap : Map[String, Object])
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+@punctualReport = @{modelMap.get("punctualReport").asInstanceOf[List[Attendance]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Weekly Summary Report") {
+    @inc.report_tabs(selectedTab)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pin</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

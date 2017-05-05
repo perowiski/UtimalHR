@@ -1,0 +1,37 @@
+@(modelMap : Map[String, Object])
+@import pojos.AbsenteeReport
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+@absenteeReport = @{modelMap.get("absenteeReport").asInstanceOf[List[AbsenteeReport]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "AbsenteeReport Report") {
+    @inc.report_tabs(selectedTab)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pin</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+        @for(report <- absenteeReport) {
+            <tr>
+                <td>@(report.firstName + " "+ report.lastName)</td>
+                <td>@report.pin</td>
+                <td>@report.clockDate</td>
+            </tr>
+
+        }
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

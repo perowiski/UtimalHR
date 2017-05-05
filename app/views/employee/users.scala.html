@@ -1,0 +1,48 @@
+@(modelMap : Map[String, Object])
+@userList = @{modelMap.get("userList").asInstanceOf[List[User]]}
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "All Employees") {
+    @inc.user_tabs(selectedTab)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Basic information</th>
+                <th>Pin</th>
+                <th>Role(s)</th>
+                <th>Date of Joining</th>
+                <th>Department</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-sm">
+        @for(user <- userList) {
+            <tr>
+                <td>@user.firstName @user.lastName</td>
+                <td>@user.userId.pin</td>
+                <td><span class="label label-primary"><i class='fa fa-user'></i>
+                    @user.roleType</span>
+                </td>
+                <td></td>
+                @if(user.department != null) {
+                    <td><i class='fa fa-institution'></i>@user.department.departmentName</td>
+                }
+                @if(user.location != null) {
+                    <td><i class='fa fa-location-arrow'></i>@user.location.locationName</td>
+                }
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

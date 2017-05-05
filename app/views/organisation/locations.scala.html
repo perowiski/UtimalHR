@@ -1,0 +1,39 @@
+@(modelMap: Map[String, Object])
+@locationList = @{modelMap.get("locationList").asInstanceOf[List[Array[Object]]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Locations") {
+
+    <table id="example-1" class="table table-striped dt-responsive display">
+        <thead>
+            <tr>
+                <th>Location name</th>
+                <th>Number of employees</th>
+                <th>Country</th>
+                <th>Mail alias</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+        @for(location <- locationList) {
+            <tr>
+                <td>@{location(0).asInstanceOf[Location].locationName}</td>
+                <td>@if(location(1) != null){@location(1)}else{0}</td>
+                <td>@{location(0).asInstanceOf[Location].country}</td>
+                <td>@{location(0).asInstanceOf[Location].locationMailAlias}</td>
+                <td>@{location(0).asInstanceOf[Location].description}</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

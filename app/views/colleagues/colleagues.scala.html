@@ -1,0 +1,60 @@
+@(modelMap : Map[String, Object])
+
+@colleagueList = @{modelMap.get("colleagueList").asInstanceOf[List[User]]}
+
+    @template(title = "Title", styles = styles, scripts = scripts, currentView = "Colleagues") {
+
+        <table id="example-1" class="table table-striped dt-responsive display">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Pin</th>
+                    <th>Role Type</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
+                    <th>Department</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+
+            <tbody class="uilabels text-sm">
+            @for(user <- colleagueList) {
+                <tr>
+                    <td>@user.firstName @user.lastName</td>
+                    <td>@user.userId.pin</td>
+                    <td><i class='fa fa-user'></i>
+                        @user.roleType
+                    </td>
+                    <td>
+                        <i class='fa fa-mobile-phone'></i>
+                        @user.phone1
+                    </td>
+                    <td>
+                        <i class='fa fa-envelope'></i>
+                        @user.emailAddress
+                    </td>
+                    <td>
+                        @if(user.department != null) {
+                            <i class='fa fa-institution'></i>@user.department.departmentName
+                        }
+                    </td>
+                    <td>
+                        @if(user.location != null) {
+                            <i class='fa fa-location-arrow'></i>@user.location.locationName
+                        }
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    }
+
+    @scripts = {
+
+    }
+
+    @styles = {
+
+    }
+

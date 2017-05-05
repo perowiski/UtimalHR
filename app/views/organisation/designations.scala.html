@@ -1,0 +1,34 @@
+@(modelMap: Map[String, Object])
+@designationList = @{modelMap.get("designationList").asInstanceOf[List[Array[Object]]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Designations") {
+
+    <table id="example-1" class="table table-striped dt-responsive display">
+        <thead>
+            <tr>
+                <th>Designation Name</th>
+                <th>Number of employees</th>
+                <th>Mail alias</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+        @for(designation <- designationList) {
+            <tr>
+                <td>@{designation(0).asInstanceOf[Designation].designationName}</td>
+                <td>@if(designation(1) != null){@designation(1)}else{0}</td>
+                <td>@{designation(0).asInstanceOf[Designation].designationMailAlias}</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}

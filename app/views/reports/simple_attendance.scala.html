@@ -1,0 +1,52 @@
+@(modelMap : Map[String, Object])
+@import pojos.SimpleAttendanceReport
+@import java.time.LocalTime
+@import util.Utility
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+@simpleAttendanceReport = @{modelMap.get("simpleAttendanceReport").asInstanceOf[List[SimpleAttendanceReport]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Simple Attendance Report") {
+    @inc.report_tabs(selectedTab)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pin</th>
+                <th>Date</th>
+                <th>Clock In</th>
+                <th>Clock Out</th>
+                <th>Hours Worked</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+        @for(report <- simpleAttendanceReport) {
+            <tr>
+                <td>@(report.firstName + " "+ report.lastName)</td>
+                <td>@report.pin</td>
+                <td>@report.clockDate</td>
+                <td>@if(report.clockIn != null){@Utility.printTime(report.clockIn)}else{No Clock}</td>
+                <td>@if(report.clockOut != null){@Utility.printTime(report.clockOut)}else{No Clock}</td>
+                <td>
+                    @if(report.clockOut != null && report.clockIn != null){
+                        @{Utility.printTime(report.clockOut.minusHours(report.clockIn.getHour()))}
+                    }else{
+                        @{Utility.printTime(LocalTime.parse("00:00:00"))}
+
+                    }
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

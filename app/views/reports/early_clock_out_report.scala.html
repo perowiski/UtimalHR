@@ -1,0 +1,42 @@
+@(modelMap : Map[String, Object])
+@import util.Utility
+@selectedTab = @{modelMap.get("selectedTab").asInstanceOf[String]}
+@earlyClockOutReport = @{modelMap.get("earlyClockOutReport").asInstanceOf[List[Attendance]]}
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Early Clock Out Report") {
+    @inc.report_tabs(selectedTab)
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pin</th>
+                <th>Date</th>
+                <th>Clock Out</th>
+                <th>Expected Clock Out</th>
+                <th>Hours Worked</th>
+            </tr>
+        </thead>
+
+        <tbody class="uilabels text-md">
+        @for(report <- earlyClockOutReport) {
+            <tr>
+                <td>@(report.user.firstName + " "+ report.user.lastName)</td>
+                <td>@report.user.userId.pin</td>
+                <td>@report.clockDate</td>
+                <td>@Utility.printTime(report.clockOut)</td>
+                <td>@Utility.printTime(report.shift.expectedClockOut)</td>
+                <td>@{Utility.printTime(report.clockOut.minusHours(report.clockIn.getHour))}</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
+

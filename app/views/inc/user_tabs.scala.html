@@ -1,0 +1,20 @@
+@(selectedTab : String)
+
+<ul class="nav nav-tabs left-aligned">
+    <li class="@if(selectedTab == "allUsers"){active}">
+        <a href="@controllers.employee.routes.UsersController.index(session().get("roleType").toLowerCase)">
+            <i class="fa fa-home"></i> All Employees
+        </a>
+    </li>
+    <li class="@if(selectedTab == "activeUsers"){active}">
+        <a href="@controllers.employee.routes.UsersController.getActiveUserList(session().get("roleType").toLowerCase)">
+            <i class="fa fa-user"></i> Active Employees
+        </a>
+    </li>
+    <li class="@if(selectedTab == "inActiveUsers"){active}">
+        <a href="@controllers.employee.routes.UsersController.getInActiveUserList(session().get("roleType").toLowerCase)">
+            <i class="fa fa-envelope"></i> In Active Employees
+        </a>
+    </li>
+
+</ul>

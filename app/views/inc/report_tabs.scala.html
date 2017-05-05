@@ -1,0 +1,53 @@
+@import controllers.reports.ReverseSimpleAttendanceReportController
+@(selectedTab : String)
+
+<ul class="nav nav-tabs left-aligned">
+    <li class="@if(selectedTab == "simpleAttendanceReport"){active}">
+        <a href="@controllers.reports.routes.SimpleAttendanceReportController.index(session().get("roleType").toLowerCase)">
+            Simple Attendance
+        </a>
+    </li>
+    <li class="@if(selectedTab == "latenessReport"){active}">
+        <a href="@controllers.reports.routes.LatenessReportController.index(session().get("roleType").toLowerCase)">
+            Lateness Report
+        </a>
+    </li>
+    <li class="@if(selectedTab == "punctualReport"){active}">
+        <a href="@controllers.reports.routes.PunctualReportController.index(session().get("roleType").toLowerCase)">
+            Punctual Report
+        </a>
+    </li>
+
+    <li class="@if(selectedTab == "absenteeReport"){active}">
+        <a href="@controllers.reports.routes.AbsenteeReportController.index(session().get("roleType").toLowerCase)">
+            Absentee Report
+        </a>
+    </li>
+
+    <li class="@if(selectedTab == "earlyClockOutReport"){active}">
+        <a href="@controllers.reports.routes.EarlyClockOutReportController.index(session().get("roleType").toLowerCase)">
+            Early Clock Out Report
+        </a>
+    </li>
+
+    <li class="@if(selectedTab == "attendanceSummaryReport"){active}">
+        <a href="@controllers.reports.routes.AttendanceSummaryReportController.index(session().get("roleType").toLowerCase)">
+            Attendance Summary Report
+        </a>
+    </li>
+
+    <li class="@if(selectedTab == "attendanceLogsReport"){active}">
+        <a href="@controllers.reports.routes.AttendanceLogsReportController.index(session().get("roleType").toLowerCase)">
+            Attendance Logs Report
+        </a>
+    </li>
+
+    <li class="@if(selectedTab == "weeklyReport"){active}">
+        <a href="@controllers.reports.routes.WeeklySummaryReportController.index(session().get("roleType").toLowerCase)">
+            Weekly Summary Report
+        </a>
+    </li>
+
+
+
+</ul>

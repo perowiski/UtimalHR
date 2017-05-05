@@ -1,0 +1,144 @@
+@import java.util
+@(modelMap : Map[String, Object])
+
+@presentUsers = @{modelMap.get("presentUsers").asInstanceOf[List[User]]}
+@punctualUsers = @{modelMap.get("punctualUsers").asInstanceOf[List[User]]}
+@activeUsers = @{modelMap.get("activeUsers").asInstanceOf[List[User]]}
+@inActiveUsers = @{modelMap.get("inActiveUsers").asInstanceOf[List[User]]}
+@absenteeUsers = @{modelMap.get("absenteeUsers").asInstanceOf[List[User]]}
+@usersDateOfBirth = @{modelMap.get("usersDateOfBirth").asInstanceOf[List[User]]}
+@latenessUsers = @{modelMap.get("latenessUsers").asInstanceOf[util.ArrayList[Object]]}
+@earlyClockOutUsers = @{modelMap.get("earlyClockOutUsers").asInstanceOf[util.ArrayList[Object]]}
+@usersOnLeave = @{modelMap.get("usersOnLeave").asInstanceOf[util.ArrayList[Object]]}
+@pendingExemptionRequests = @{modelMap.get("pendingExemptionRequests").asInstanceOf[util.ArrayList[Object]]}
+@pendingLeaveRequests = @{modelMap.get("pendingLeaveRequests").asInstanceOf[util.ArrayList[Object]]}
+
+
+
+@template(title = "Title", styles = styles, scripts = scripts, currentView = "Dashboard") {
+    <div class="col-lg-12">
+        <section class="box nobox ">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-thumbs-up icon-md icon-rounded icon-primary'></i>
+                            <div class="stats">
+                                <h4><strong>@presentUsers.size()</strong></h4>
+                                <span>Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-user icon-md icon-rounded icon-accent'></i>
+                            <div class="stats">
+                                <h4><strong>@absenteeUsers.size()</strong></h4>
+                                <span>Absentees</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-thumbs-up icon-md icon-rounded icon-primary'></i>
+                            <div class="stats">
+                                <h4><strong>@punctualUsers.size()</strong></h4>
+                                <span>Punctual</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-accent'></i>
+                            <div class="stats">
+                                <h4><strong>@latenessUsers.size()</strong></h4>
+                                <span>Lateness</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-users icon-md icon-rounded icon-success'></i>
+                            <div class="stats">
+                                <h4><strong>@activeUsers.size()</strong></h4>
+                                <span>Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-user icon-md icon-rounded icon-accent'></i>
+                            <div class="stats">
+                                <h4><strong>@inActiveUsers.size()</strong></h4>
+                                <span>In Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-warning'></i>
+                            <div class="stats">
+                                <h4><strong>@earlyClockOutUsers.size()</strong></h4>
+                                <span>Early Clock Out</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-purple'></i>
+                            <div class="stats">
+                                <h4><strong>@usersOnLeave.size()</strong></h4>
+                                <span>On Leave</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-purple'></i>
+                            <div class="stats">
+                                <h4><strong>@usersDateOfBirth.size()</strong></h4>
+                                <span>Birthday</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-purple'></i>
+                            <div class="stats">
+                                <h4><strong>@pendingLeaveRequests.size()</strong></h4>
+                                <span>Leave Requests</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-warning'></i>
+                            <div class="stats">
+                                <h4><strong>@pendingExemptionRequests.size()</strong></h4>
+                                <span>Exemption Requests</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End .row -->
+            </div>
+        </section>
+    </div>
+}
+
+@scripts = {
+
+}
+
+@styles = {
+
+}
